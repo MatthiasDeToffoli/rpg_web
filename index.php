@@ -30,9 +30,9 @@ function testConnection($Name,$Pass){
     $res = $reqPre->fetch();
 
     if (!empty($res)) {
-      if($res[0] == $Pass) die("login");
+      if($res[0] == hash("sha512", $Pass)) die("login");
       else {
-         echo errorText("wrong password");
+        echo errorText("wrong password");
       }
     }
     else {
@@ -43,7 +43,7 @@ function testConnection($Name,$Pass){
     exit;
   }
 }
- ?>
+?>
 
 <!DOCTYPE html>
 <html>
@@ -58,9 +58,9 @@ function testConnection($Name,$Pass){
   </br>
 </br>
 <h3>Login : </h3>
-<input name="name" type="text" maxlength = "8"/>
+<input name="name" type="text" maxlength = "12"/>
 <h3>password : </h3>
-<input name="pass" type="password" maxlength = "8"/>
+<input name="pass" type="password" maxlength = "20"/>
 
 
 
